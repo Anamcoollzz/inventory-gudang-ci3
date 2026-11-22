@@ -63,7 +63,7 @@ class M_project extends CI_Model {
 	
 		foreach ($this->column_search as $item) // loop column 
 		{
-			if($_POST['search']['value']) // if datatable send POST for search
+			if(!empty($_POST['search']['value'])) // if datatable send POST for search
 			{
 				
 				if($i===0) // first loop
@@ -96,8 +96,8 @@ class M_project extends CI_Model {
 	function get_datatables()
 	{
 		$this->_get_datatables_query();
-		if($_POST['length'] != -1)
-		$this->db->limit($_POST['length'], $_POST['start']);
+		if(isset($_POST['length']) && $_POST['length'] != -1)
+		$this->db->limit((int) $_POST['length'], isset($_POST['start']) ? (int) $_POST['start'] : 0);
 		$query = $this->db->get();
 		return $query->result();
 	}

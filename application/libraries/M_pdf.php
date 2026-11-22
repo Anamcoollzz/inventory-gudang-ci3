@@ -1,15 +1,26 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
- 
- include_once APPPATH.'/third_party/mpdf/mpdf.php';
- 
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class M_pdf {
- 
-    public $param;
-    public $pdf;
- 
-    public function __construct($param = '"en-GB-x","A5","","",10,10,10,10,6,3')
-    {
-        $this->param =$param;
-        $this->pdf = new mPDF($this->param);
-    }
+
+	public $param;
+	public $pdf;
+
+	public function __construct($param = array())
+	{
+		$defaultConfig = array(
+			'mode'          => 'utf-8',
+			'format'        => 'A5',
+			'margin_left'   => 10,
+			'margin_right'  => 10,
+			'margin_top'    => 10,
+			'margin_bottom' => 10,
+			'margin_header' => 6,
+			'margin_footer' => 3,
+		);
+
+		$config = is_array($param) ? array_merge($defaultConfig, $param) : $defaultConfig;
+		$this->param = $config;
+		$this->pdf = new \Mpdf\Mpdf($config);
+	}
 }

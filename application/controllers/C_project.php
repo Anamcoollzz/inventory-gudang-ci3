@@ -18,8 +18,7 @@ class C_project extends CI_Controller {
 //LOGIN
 	public function index(){
     	if ($this->session->userdata('isLoggedIn')) {
-            $session_data = $this->session->userdata('isLoggedIn');
-            $data['namanya'] = $session_data['NAMA_ADMIN'];
+            $data['namanya'] = $this->session->userdata('NAMA_ADMIN');
             $this->load->view('laman_awal',$data);
         }else{
             $this->fungsi_login(false);
@@ -42,8 +41,7 @@ class C_project extends CI_Controller {
 
       //Ensure values exist for email and pass, and validate the user's credentials
       if( $user && $pass && $this->M_project->validate_user($user,$pass)) {
-        $session_data = $this->session->userdata('isLoggedIn');
-        $data['namanya'] = $session_data['NAMA_ADMIN'];
+        $data['namanya'] = $this->session->userdata('NAMA_ADMIN');
        // $this->load->view('laman_awal',$data);
         redirect('C_project/index');
       } else {
@@ -72,7 +70,7 @@ class C_project extends CI_Controller {
 	{
 		$list = $this->M_project->get_datatables();
 		$data = array();
-		$no = $_POST['start'];
+		$no = isset($_POST['start']) ? (int) $_POST['start'] : 0;
 		foreach ($list as $M_project) {
 			$no++;
 			$row = array();
@@ -92,7 +90,7 @@ class C_project extends CI_Controller {
 		}
 
 		$output = array(
-						"draw" => $_POST['draw'],
+						"draw" => isset($_POST['draw']) ? (int) $_POST['draw'] : 0,
 						"recordsTotal" => $this->M_project->count_all(),
 						"recordsFiltered" => $this->M_project->count_filtered(),
 						"data" => $data,

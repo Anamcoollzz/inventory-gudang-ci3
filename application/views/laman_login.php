@@ -53,7 +53,7 @@
 
     <!--BACKSTRETCH-->
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-    <script type="text/javascript" src="<?php echo base_url();?>ASETLAIN/assets/js/jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/ASETLAIN/js/jquery.backstretch.min.js"></script>
     <script>
         $.backstretch("<?php echo base_url().'assets/ASETLAIN/img/portfolio/d6.png'?>", {speed: 700});
     </script>

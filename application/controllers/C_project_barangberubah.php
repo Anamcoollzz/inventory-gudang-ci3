@@ -23,7 +23,7 @@ class C_project_barangberubah extends CI_Controller {
 	{
 		$list = $this->m_project_barangberubah->get_datatables();
 		$data = array();
-		$no = $_POST['start'];
+		$no = isset($_POST['start']) ? (int) $_POST['start'] : 0;
 		foreach ($list as $m_project_barangberubah) {
 			$no++;
 			$row = array();
@@ -42,7 +42,7 @@ class C_project_barangberubah extends CI_Controller {
 		}
 
 		$output = array(
-						"draw" => $_POST['draw'],
+						"draw" => isset($_POST['draw']) ? (int) $_POST['draw'] : 0,
 						"recordsTotal" => $this->m_project_barangberubah->count_all(),
 						"recordsFiltered" => $this->m_project_barangberubah->count_filtered(),
 						"data" => $data,

@@ -1,22 +1,17 @@
 {
-	"description": "The CodeIgniter framework",
-	"name": "codeigniter/framework",
+	"name": "inventorigudang/app",
+	"description": "Aplikasi Inventori Gudang (CodeIgniter 3 - PHP 8.4 compatible)",
 	"type": "project",
-	"homepage": "https://codeigniter.com",
 	"license": "MIT",
-	"support": {
-		"forum": "http://forum.codeigniter.com/",
-		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
-		"irc": "irc://irc.freenode.net/codeigniter",
-		"source": "https://github.com/bcit-ci/CodeIgniter"
-	},
 	"require": {
-		"php": ">=5.2.4"
+		"php": ">=8.4",
+		"pocketarc/codeigniter": "^3.4",
+		"mpdf/mpdf": "^8.3"
 	},
-	"suggest": {
-		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
-	},
-	"require-dev": {
-		"mikey179/vfsStream": "1.1.*"
+	"scripts": {
+		"serve": [
+			"Composer\\Config::disableProcessTimeout",
+			"@php -S localhost:8000"
+		]
 	}
 }

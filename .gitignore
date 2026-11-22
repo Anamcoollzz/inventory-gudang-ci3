@@ -1,0 +1,5 @@
+/vendor/
+/application/logs/*.php
+/application/cache/*
+!/application/cache/index.html
+.DS_Store
